@@ -8,5 +8,7 @@
             "email": "kristoffereklund1@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    }
 }
