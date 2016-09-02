@@ -1,6 +1,4 @@
-# assently-laravel
-
-### Installation
+# Installation
 Install with composer by running ```composer require eklundkristoffer/assently```
 
 Add ```Assently\AssentlyServiceProvider``` to your providers array. 
@@ -12,8 +10,9 @@ ASSENTLY_KEY=<KEY_HERE>
 ASSENTLY_SECRET=<SECRET_HERE>
 ```
 
-### Examples
+# Examples
 
+### Create & send a new case. 
 ```php
 $assently = new Assently\Assently;
 
@@ -42,3 +41,14 @@ $data = [
 ];
 
 $assently->case()->create($data)->send();
+```
+
+### Send a case reminder
+
+```php
+$assently = new Assently\Assently;
+
+$assently->authenticate(env('ASSENTLY_KEY'), env('ASSENTLY_SECRET'));
+
+$assently->case()->find('5a0e0869-6807-4b79-3712-466ea5cca5ce')->remind();
+```
