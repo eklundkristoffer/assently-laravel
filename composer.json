@@ -1,0 +1,11 @@
+{
+    "name": "eklundkristoffer/assently",
+    "description": "Assently API for Laravel",
+    "authors": [
+        {
+            "name": "Kristoffer Eklund",
+            "email": "kristoffereklund1@gmail.com"
+        }
+    ],
+    "require": {}
+}
