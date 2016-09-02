@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Assently;
 
 use Illuminate\Support\ServiceProvider;
 

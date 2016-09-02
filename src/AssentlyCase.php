@@ -59,7 +59,7 @@ class AssentlyCase
      * Send the new case request.
      *
      * @param  mixed  $id
-     * @return mixed
+     * @return $this
      */
     public function send($id = null)
     {
@@ -67,13 +67,78 @@ class AssentlyCase
             throw new Exception('No case ID found.');
         }
 
+        $id = ($id) ? $id : $this->id;
+
         $response = $this->client->post($this->url('sendcase'), [
             'auth' => $this->assently->auth(),
             'json' => [
-                'Id' => ($id) ? $id : $this->id 
+                'Id' => $id
             ]
         ]);
 
-        return $response;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Change attributes. 
+     *
+     * @param  mixed  $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        return $this->case->{ucfirst($key)};
+    }
+
+    /**
+     * Get a case.
+     *
+     * @param  mixed  $id
+     * @return array
+     */
+    public function find($id = null)
+    {
+        if (! isset($id) && ! isset($this->id)) {
+            throw new Exception('No case ID found.');
+        }
+
+        $id = ($id) ? $id : $this->id;
+
+        $response = $this->client->post($this->url('getcase'), [
+            'auth' => $this->assently->auth(),
+            'json' => [
+                'Id' => $id
+            ]
+        ]);
+
+        $this->case = json_decode($response->getBody()->getContents());
+
+        return $this;
+    }
+
+    /**
+     * Send a reminder to parties.
+     *
+     * @param  mixed  $id
+     * @return $this
+     */
+    public function remind($id = null)
+    {
+        if (! isset($id) && ! isset($this->id) && ! isset($this->case->Id)) {
+            throw new Exception('No case ID found.');
+        }
+
+        $id = ($id) ? $id : $this->id;
+
+        $response = $this->client->post($this->url('remindcase'), [
+            'auth' => $this->assently->auth(),
+            'json' => [
+                'Id' => $id
+            ]
+        ]);
+
+        return $this;
     }
 }
