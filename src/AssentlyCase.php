@@ -64,7 +64,7 @@ class AssentlyCase
     public function send($id = null)
     {
         if (! isset($id) && ! isset($this->id)) {
-            throw new Exception('Lol');
+            throw new Exception('No case ID found.');
         }
 
         $response = $this->client->post($this->url('sendcase'), [

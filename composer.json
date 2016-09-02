@@ -1,6 +1,7 @@
 {
     "name": "eklundkristoffer/assently",
     "description": "Assently API for Laravel",
+    "license": "MIT",
     "authors": [
         {
             "name": "Kristoffer Eklund",
