@@ -33,11 +33,7 @@ $data = [
             'EmailAddress'  => 'johndoe@gmail.com',
             'AnyoneCanSign' => false
         ])
-    ],
-
-    // Notify the parties that the document is ready
-    // to be signed via email. 
-    'SendSignRequestEmailToParties' => true
+    ]
 ];
 
 $assently->case()->create($data)->send();
